@@ -1,0 +1,21 @@
+{
+  "name": "Classroom Environment (Copilot Disabled)",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "github.copilot.enable": false,
+        "github.copilot.inlineSuggest.enable": false,
+        "github.copilot.editor.enableAutoCompletions": false
+      },
+      "extensions": [
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "-ms-python.vscode-python-envs",
+        "-GitHub.copilot",
+        "-GitHub.copilot-chat"
+      ]
+    }
+  },
+  "postCreateCommand": "pip install pytest"
+}

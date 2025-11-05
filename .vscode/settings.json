@@ -1,0 +1,34 @@
+
+{
+    "chat.disableAIFeatures": true,
+
+    "editor.inlineSuggest.enabled": false,
+    
+    "python.analysis.addHoverSummaries": false,
+
+    "python.analysis.aiCodeActions": {
+	"implementAbstractClasses": false,
+	"generateSymbol": false,
+	"convertFormatString": false
+    },
+
+    "githubPullRequests.codingAgent.enabled": false,
+
+    "githubPullRequests.experimental.chat": false,
+
+    "githubPullRequests.experimental.useQuickChat": false,
+
+    "editor.aiStats.enabled": false,
+
+    "chat.agent.enabled": false,
+
+    "chat.agentSessionsViewLocation": "disabled",
+
+    "chat.emptyChatState.enabled": false,
+
+    "chat.emptyState.history.enabled": false,
+
+    "inlineChat.lineNaturalLanguageHint": false,
+
+
+}
