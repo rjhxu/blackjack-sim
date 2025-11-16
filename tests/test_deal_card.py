@@ -9,5 +9,5 @@ def test_draw_card():
         if draw_card() == 10:
             cnt+=1
     cnt/=1_000_000
-
+    
     assert cnt == pytest.approx(16/52, abs=1e-2)
