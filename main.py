@@ -1,10 +1,10 @@
 from blackjack import simulate, save_results
 
+# This program allows users to test 
 
 def main():
     NUM_HANDS = 1_000_000
-    bet_size = 2
-    result = simulate(NUM_HANDS, bet_size)
+    result = simulate(NUM_HANDS)
 
     save_results(result, "results.txt")
     
