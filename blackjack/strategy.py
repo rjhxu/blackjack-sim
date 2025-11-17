@@ -1,4 +1,9 @@
 # Basic Strategy for multi-deck S17 blackjack game. according to playsmart Ontario. https://www.playsmart.ca/wp-content/uploads/2019/03/PS.ca_BJ-Strat.pdf
+# Legend:
+# 0: Stand
+# 1: Hit
+# 2: Double
+# 3: Split
 
 hard = [
 # 2  3  4  5  6  7  8  9  10 A
@@ -31,6 +36,7 @@ soft = [
  [0, 2, 2, 2, 2, 0, 0, 1, 1, 1],  # A+7 (18) -> stand except hit vs 9,10,A; double vs 3-6
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # A+8 (19) -> always stand
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # A+9 (20) -> always stand
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # A+10 (21) -> always stand
 ]
 
 pair = [

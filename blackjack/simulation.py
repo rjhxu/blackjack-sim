@@ -1,31 +1,18 @@
-from blackjack.deal_card import add_card
+from blackjack.dealer import dealer
+from blackjack.player import player
 
-def dealer():
-    total = 0
-    aces = 0
-
-    total, aces = add_card(total, aces)
-    total, aces = add_card(total, aces)
-
-    while total<17:
-        total, aces = add_card(total, aces)
-    return -1 if total>21 else total
-
-def player():
-    return 1
-# TODO
-# include dealer peek for 21 rule. This will impact EV if left out, (splitting, doubling)
 def play_game():
-    DEALER_VALUE = dealer()
-    PLAYER_VALUE = player()
-    if PLAYER_VALUE == 21 and PLAYER_VALUE != DEALER_VALUE:
+    DEALER_VALUE, UPCARD = dealer()
+    PLAYER_VALUE, PLAYER_DOUBLED = player(UPCARD)
+    
+    if PLAYER_VALUE == DEALER_VALUE: # Player and Dealer tie
+        return 0
+    elif PLAYER_VALUE == -2: # Player has BJ (Pays 3:2)
         return 1.5
-    elif PLAYER_VALUE == DEALER_VALUE:
-        return 0
-    elif PLAYER_VALUE > DEALER_VALUE:
-        return 1
-    else:
-        return 0
+    elif DEALER_VALUE == -2 or DEALER_VALUE > PLAYER_VALUE: # Dealer has BJ or Dealer hand better than Player
+        return -2 if PLAYER_DOUBLED else -1
+    else: # Player hand better than dealer
+        return 2 if PLAYER_DOUBLED else 1
 
 def simulate(num_hands):
     results = [0] * num_hands
