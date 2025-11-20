@@ -1,11 +1,10 @@
-from blackjack import simulate, save_results, calculateEV
+from blackjack import simulate, process_results
 
 # This program allows users to test 
 
 def main():
     NUM_HANDS = 1000
     result = simulate(NUM_HANDS)
-    calculateEV(result, NUM_HANDS)
-    # save_results(result, "results.txt")    
+    process_results(result, NUM_HANDS)
 if __name__ == "__main__":
     main()
