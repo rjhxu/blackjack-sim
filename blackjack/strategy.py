@@ -62,6 +62,6 @@ def soft_strategy(total, upcard):
     '''Returns player decision according to strategy. 0 -> Stand. 1 -> Hit. 2 -> Double.'''
     return soft[total-13][upcard-2]
 
-def pair_strategy(pair, upcard):
+def pair_strategy(pair_num, upcard):
     '''Returns player decision according to strategy. 0 -> Stand. 1 -> Hit. 2 -> Double. 3 -> Split'''
-    return pair[pair-2][upcard-2]
+    return pair[pair_num-2][upcard-2]
