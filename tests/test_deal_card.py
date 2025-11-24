@@ -33,7 +33,6 @@ def test_add_card_ace_converts_on_bust():
     assert total <= 21 or aces == 0
 
 def test_add_card_multiple_aces():
-    """Test handling multiple aces"""
     total = 12  # A + A (11 + 1)
     aces = 1  # One counted as 11
     total, aces = add_card(total, aces)
