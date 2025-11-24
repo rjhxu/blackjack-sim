@@ -50,8 +50,3 @@ def player(upcard):
             leftover_hands.append(construct_hand(split_card, True))
             leftover_hands.append(construct_hand(split_card, True))
     return results
-            
-
-        
-
-
