@@ -1,29 +1,29 @@
-This program performs Monte Carlo simulations of blackjack games to analyze the expected value (EV) of playing according to basic strategy. 
-The simulation uses simple casino rules and can play millions of hands to provide statistically significant results.
+This program performs Monte Carlo simulations of blackjack games to analyze the expected value (EV) of playing according to basic strategy. The simulation uses casino-style rules and can run millions of hands to produce statistically significant results.
 
-Game Rules:
-The simulation uses the following blackjack rules:
+## Game Rules
 
-S17: Dealer stands on soft 17
-Continuous Shuffle: Each card is drawn independently (infinite deck simulation)
-RSA: Re-split Aces allowed
-DAS: Double After Split allowed
-Infinite Splitting: No limit on number of splits
-Hit Aces After Splitting: Players can hit aces after splitting them
-Blackjack Pays 3:2: Natural blackjacks pay 1.5 times the bet
+- **S17**: Dealer stands on soft 17
+- **Continuous shuffle**: Each card is drawn independently (infinite deck)
+- **RSA**: Re-split aces allowed
+- **DAS**: Double after split allowed
+- **Infinite splitting**: No limit on number of splits
+- **Hit aces after splitting**: Players can hit aces after splitting them
+- **Blackjack pays 3:2**: Natural blackjacks pay 1.5× the bet
 
-How to run the program:
+## Running the Program
 
-Run the main.py file
+Run `main.py`. It runs multiple repeated simulations across configurable sample lengths and produces a bankroll visualization.
 
-Optional:
-adjust the NUM_HANDS variable to simulate more or less hands for accuracy/performance
+Adjust `LENGTHS` (hands per trial) and `REPS` (trials per length) in `main.py` to trade off accuracy vs. runtime.
 
-Output:
-The program will display Expected Value, highest point of profit, and largest loss.
+## Output
 
-Modifying the program:
-Both player and casino behaviour can also be modified to suit specific test cases
-Users can modify strategy.py to adjust the players strategy, and modify dealer.py to adjust house rules
-Furthermore, payouts and game quality can be adjusted in simulation.py
-Lastly, users can use other librares in data_processing.py to adjust their programs
+- **`bankrolls.png`**: Cumulative profit curves per simulation length, with individual trials, mean line, and min/max band
+- **`process_results()`** (available separately): Prints EV, peak profit, and peak loss; writes per-hand detail to `results.txt`
+
+## Modifying the Program
+
+- **`strategy.py`**: Player strategy tables
+- **`dealer.py`**: House rules and dealer behavior
+- **`simulation.py`**: Payout logic and game flow
+- **`data_processing.py`**: Result analysis and plotting

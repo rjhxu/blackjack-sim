@@ -1,46 +1,39 @@
-Run all tests with pytest -v
+Run all tests with `pytest -v`.
 
-Automated Testing:
+## Automated Testing
 
-We should pass all 47 tests.
+The suite contains **87 tests** across six files. With matplotlib installed, all 87 run; without it, 85 pass and 2 plot tests are skipped.
 
-All tests should pass. The test suite includes:
+| File | Focus |
+|------|-------|
+| `test_deal_card.py` | Card dealing and ace conversion |
+| `test_strategy.py` | Basic strategy tables (hard, soft, pair) |
+| `test_dealer.py` | S17 dealer behavior |
+| `test_player.py` | Player decisions, splits, doubles, busts |
+| `test_simulation.py` | Game outcomes and payout logic |
+| `test_data_processing.py` | EV calculation, bankroll experiment, plotting |
 
-test_deal_card.py: Validates card dealing logic and ace conversion
-test_strategy.py: Verifies basic strategy is correctly implemented
-test_dealer.py: Tests dealer behavior and S17 rules
-test_simulation.py: Validates game simulation and outcomes
-test_player.py: Tests player behaviour
+Most game-logic tests use **deterministic card sequences** (via `monkeypatch`) to exercise specific branches without relying on randomness. Probabilistic smoke tests remain for general sanity checks.
 
-What the Automated Tests Cover
+## Manual Testing
 
-Card Dealing: Ensures cards are valid values and aces convert properly when busting
-Basic Strategy: Verifies all hard, soft, and pair decisions match optimal strategy
-Dealer Logic: Confirms dealer follows S17 rules and correctly identifies blackjack
-Game Simulation: Tests that games produce valid outcomes with correct payouts
+Some aspects still benefit from manual verification:
 
-Manual Testing
-While automated tests cover the core logic, some aspects require manual verification to ensure the user interface works as expected.
+**Manual Test 1: Program execution**
 
-Manual Test 1: Program execution
+1. Run `main.py`
+2. Wait for completion (runtime scales with `LENGTHS` and `REPS`)
 
-Steps
-1. Run main.py
-2. Wait for completion (depends on the simulation size)
+Expected:
+- Program completes without errors
+- `bankrolls.png` is created with one subplot per simulation length
 
-Expected result:
-Program completes without errors.
-All 3 lines of output are dispalyed.
-results.txt is created/overwritten.
+**Manual Test 2: Statistical accuracy**
 
-Manual Test 2: Statistical Accuracy
+1. Increase `LENGTHS` and `REPS` in `main.py` for larger samples
+2. Confirm mean EV per hand converges toward roughly **-0.4% to -0.75%** at large sample sizes
 
-Steps:
-1. Pick a sample size (the amount of variance you'll see is inversely related to the size of the simulation)
-2. Verify that the result makes sense
-
-Expected result:
-Large variance with smaller sample size (-10% to 10% with sizes of less than 1000)
-Fast completion with small sample size
-Low variance at a large sample size (-0.5% to -0.75% with sizes greater than 1_000_000)
-Long execution times a large sample size. Ranging from a few seconds at one million to over a minute at 10_000_000
+Expected:
+- High variance at small sample sizes
+- Low variance at large sample sizes (e.g. 1M+ hands per trial)
+- Mean bankroll curves drift downward, reflecting the house edge under basic strategy

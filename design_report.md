@@ -24,7 +24,7 @@ player.py: Implements player decision-making and hand management. The player() f
 
 simulation.py: Orchestrates the game flow and runs multiple simulations. The play_game() function combines dealer and player logic to simulate a complete hand, handling all possible outcomes and calculating the net result. The simulate() function runs multiple games and collects results.
 
-data_processing.py: Processes and presents simulation results. The process_results() function calculates expected value and tracks cumulative profit using a prefix sum array, identifying maximum profit and loss points. Specific hand data is then written to a text file.
+data_processing.py: Processes and presents simulation results. The `running_total()` helper builds prefix-sum bankroll curves. `process_results()` calculates expected value and writes per-hand detail to a text file. `run_bankroll_experiment()` runs repeated simulations across multiple sample lengths. `plot_bankrolls()` visualizes cumulative profit curves with matplotlib — individual trials, mean line, and min/max band per length.
 
 3. Design Highlights
 Elegant Ace Handling
@@ -47,21 +47,13 @@ We used special values like -1 and -2 to encode results such as a bust or natura
 4. Areas for improvement
 
 Output
-The current implementation only outputs three statistics: EV, maximum profit, and maximum loss. Additional statistics would provide more insight into the simulation:
+The program now includes matplotlib bankroll visualization (`plot_bankrolls`), but additional statistics would still provide more insight:
 
 Standard deviation of results to measure volatility
 Win/loss/push percentages
 Distribution of outcomes (histogram)
 Separate tracking of split, double, and regular hand results
 Confidence intervals for the EV estimate
-
-Furthermore, the program outputs only text statistics. Adding visualization would make results more interpretable:
-
-Graph of cumulative profit over time
-Histogram of per-hand results
-Comparison charts for different strategy variations
-
-This would require adding a dependency like matplotlib and creating visualization functions.
 
 Static game rules
 Right now dealer behaviour and game rules are hard coded into the program. A more robust simulation could feature simulations of an actual 2-8 deck shoe.
