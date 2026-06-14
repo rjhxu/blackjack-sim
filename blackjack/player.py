@@ -21,7 +21,8 @@ def player(upcard):
             results.append([(21 if split else -2), False]) # -2 represents natural BJ
             continue
         if pair:
-            decision = pair_strategy(total//2, upcard)
+            pair_num = 11 if aces else total // 2
+            decision = pair_strategy(pair_num, upcard)
         elif aces:
             decision = soft_strategy(total, upcard)
         else:
@@ -46,7 +47,7 @@ def player(upcard):
             else:
                 results.append([total, True])
         else: # decision == 3, player splits
-            split_card = total//2
+            split_card = 11 if aces else total // 2
             leftover_hands.append(construct_hand(split_card, True))
             leftover_hands.append(construct_hand(split_card, True))
     return results
